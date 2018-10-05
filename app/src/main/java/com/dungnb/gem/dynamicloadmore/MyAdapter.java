@@ -36,8 +36,9 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
           if (loadMore != null) {
             loadMore.onLoadMore();
           }
+          isLoading = true;
         }
-        isLoading = true;
+
         super.onScrollStateChanged(recyclerView, newState);
       }
     });
@@ -71,7 +72,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     if (viewHolder instanceof ItemViewHolder) {
       Item item = items.get(i);
       ((ItemViewHolder) viewHolder).txtName.setText(item.getName());
-      ((ItemViewHolder) viewHolder).txtLength.setText(item.getLenght());
+      ((ItemViewHolder) viewHolder).txtLength.setText(item.getLenght() + "");
     } else if (viewHolder instanceof LoadingViewHolder) {
       ((LoadingViewHolder) viewHolder).progressBar.setIndeterminate(true);
     }
@@ -79,7 +80,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
   @Override
   public int getItemCount() {
-    return 0;
+    return items.size();
   }
 
   class ItemViewHolder extends RecyclerView.ViewHolder {
